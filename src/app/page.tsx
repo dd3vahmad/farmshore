@@ -42,7 +42,7 @@ export default async function Home() {
       <Announcement text={s.announcement_text} />
       <Navbar s={s} />
       <main>
-        <Hero s={s} />
+        <Hero s={s} categories={cats.data ?? []} />
         <CategoryGrid categories={(cats.data ?? []) as Category[]} />
         <ProductRow
           title="Featured"

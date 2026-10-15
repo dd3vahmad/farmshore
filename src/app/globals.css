@@ -12,6 +12,12 @@
   --color-accent: var(--brand-accent);
   --color-dark: var(--brand-dark);
   --color-light: var(--brand-light);
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--brand-light);
+  color: var(--brand-dark);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,10 +25,4 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

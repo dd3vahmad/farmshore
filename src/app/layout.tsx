@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { getSettings } from "@/lib/settings";
+import { Space_Grotesk } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSettings();
@@ -33,7 +38,9 @@ export default async function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: theme }} />
       </head>
-      <body className={`${inter.className} bg-light text-dark antialiased`}>
+      <body
+        className={`${spaceGrotesk.variable} font-sans bg-light text-dark antialiased`}
+      >
         {children}
       </body>
     </html>
