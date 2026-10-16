@@ -9,6 +9,7 @@ import TrustStrip from "@/components/TrustStrip";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import type { Category, Product } from "@/types/db";
+import Contact from "@/components/Contact";
 
 export const revalidate = 60;
 
@@ -64,6 +65,7 @@ export default async function Home() {
         />
         <TrustStrip />
       </main>
+      <Contact s={s} />
       <Footer s={s} />
       <WhatsAppFab number={s.whatsapp_number} />
     </>

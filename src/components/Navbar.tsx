@@ -37,7 +37,6 @@ export default function Navbar({ s }: { s: SiteSettings }) {
           <Logo name={s.brand_name} />
         )}
 
-        {/* Desktop search */}
         <form
           action="/products"
           method="get"
