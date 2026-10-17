@@ -49,8 +49,6 @@ export default function Hero({
         />
       )}
 
-      <div className="absolute inset-0 -z-20 bg-linear-to-r from-dark via-dark/60 to-dark/20" />
-      <div className="absolute inset-0 -z-20 bg-linear-to-t from-dark via-transparent to-dark/50" />
       <div className="absolute -left-40 top-1/3 -z-10 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
       <div
         aria-hidden
@@ -70,7 +68,9 @@ export default function Hero({
 
         <h1 className="max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
           <span className="block text-light">{lead}</span>
-          <span className="block text-accent">{mid}</span>
+          <span className="block bg-linear-to-r from-amber-400 via-lime-300 to-accent bg-clip-text text-transparent">
+            {mid}
+          </span>
           {rest && (
             <span className="block bg-linear-to-r from-accent via-lime-300 to-amber-400 bg-clip-text text-transparent">
               {rest}
@@ -79,12 +79,12 @@ export default function Hero({
         </h1>
 
         {s.tagline && (
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.35em] text-accent sm:text-sm">
+          <p className="mt-6 text-sm uppercase tracking-[0.35em] block bg-linear-to-r from-amber-400 via-lime-300 to-accent bg-clip-text text-transparent font-bold sm:text-md">
             {s.tagline}
           </p>
         )}
         {s.hero_subtitle && (
-          <p className="mt-4 max-w-xl text-base text-light/70 sm:text-md">
+          <p className="mt-4 max-w-xl text-base text-white font-bold sm:text-md">
             {s.hero_subtitle}
           </p>
         )}
@@ -98,7 +98,7 @@ export default function Hero({
             type="search"
             name="q"
             placeholder="Search smoked catfish, tilapia, fillets…"
-            className="min-w-0 flex-1 bg-transparent text-sm text-light placeholder:text-light/50 focus:outline-none sm:text-base"
+            className="min-w-0 flex-1 bg-transparent text-sm text-white font-bold placeholder:text-white focus:outline-none sm:text-base"
           />
           <button
             type="submit"
@@ -111,7 +111,7 @@ export default function Hero({
         {s.whatsapp_number && (
           <a
             href={`https://wa.me/${s.whatsapp_number}?text=${encodeURIComponent("Hello, I'd like to place an order.")}`}
-            className="mt-3 underline ms-5 inline-flex w-fit items-center gap-2 text-sm font-medium text-light/80 underline-offset-4 hover:text-light hover:underline"
+            className="mt-3 underline ms-5 inline-flex w-fit items-center gap-2 text-sm font-medium text-white underline-offset-4 hover:text-light hover:underline"
           >
             Prefer to order on WhatsApp
           </a>
@@ -120,12 +120,12 @@ export default function Hero({
         {categories.length > 0 && (
           <div className="mt-10">
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-[11px] font-semibold uppercase tracking-[0.3em] text-light/50">
+              <h2 className="text-md uppercase tracking-[0.3em] text-white font-bold">
                 Browse categories
               </h2>
               <Link
                 href="/products"
-                className="rounded-full border border-light/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-light/80 transition hover:border-accent hover:text-accent"
+                className="rounded-full border border-light/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:border-light/90 hover:text-light/90"
               >
                 All products ›
               </Link>
@@ -153,7 +153,7 @@ export default function Hero({
                         </span>
                       )}
                     </div>
-                    <p className="truncate px-2 py-1.5 text-center text-[10px] sm:text-xs font-semibold">
+                    <p className="truncate px-2 py-1.5 text-white text-center text-sm sm:text-sm font-bold">
                       {c.name}
                     </p>
                   </Link>

@@ -115,7 +115,7 @@ export default async function AdminProducts() {
                     <td className="px-5 py-3">
                       <div className="flex items-center justify-end gap-1">
                         <Link
-                          href={`/admin/products/${p.id}`}
+                          href={`/admin/products/${p.id}/edit`}
                           aria-label={`Edit ${p.name}`}
                           className="grid h-9 w-9 place-items-center rounded-full text-dark/50 transition hover:bg-dark/5 hover:text-dark"
                         >
