@@ -1,10 +1,11 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { createClient } from "@/lib/supabase/browser";
 import { naira, waNumber } from "@/lib/admin-utils";
 import { Card, StatusBadge } from "./ui";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export type Order = {
   id: string;
@@ -235,7 +236,7 @@ export default function OrdersTable({ initial }: { initial: Order[] }) {
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 font-semibold text-light transition hover:opacity-90"
                                 >
-                                  <MessageCircle className="h-4 w-4" />
+                                  <FaWhatsapp className="h-4 w-4" />
                                   WhatsApp {o.phone}
                                 </a>
                                 <p className="mt-3 text-dark/60">

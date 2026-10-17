@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
 import Logo from "./Logo";
 import type { SiteSettings } from "@/types/db";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -51,7 +51,7 @@ export default function Footer({ s }: { s: SiteSettings }) {
           <div className="mt-6 flex gap-3">
             {wa && (
               <a href={wa} aria-label="WhatsApp" className={socialBtn}>
-                <MessageCircle className="h-5 w-5" />
+                <FaWhatsapp className="h-5 w-5" />
               </a>
             )}
             {handle && (

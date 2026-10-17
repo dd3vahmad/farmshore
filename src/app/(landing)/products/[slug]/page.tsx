@@ -1,20 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import {
-  ChevronRight,
-  Clock,
-  MessageCircle,
-  Package,
-  Scale,
-  Snowflake,
-} from "lucide-react";
+import { ChevronRight, Clock, Package, Scale, Snowflake } from "lucide-react";
 import { getSettings } from "@/lib/settings";
 import { createClient } from "@/lib/supabase/server";
 import ProductCard from "@/components/ProductCard";
 import ProductGallery from "@/components/ProductGallery";
 import ProductPurchase from "@/components/ProductPurchase";
 import type { Category, Product } from "@/types/db";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export const revalidate = 60;
 
@@ -182,7 +176,7 @@ export default async function ProductPage({
                   href={ask}
                   className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-dark/70 underline-offset-4 hover:text-dark hover:underline"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <FaWhatsapp className="h-4 w-4" />
                   Ask a question on WhatsApp
                 </a>
               )}

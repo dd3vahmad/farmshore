@@ -1,6 +1,6 @@
-import { MessageCircle } from "lucide-react";
 import type { SiteSettings } from "@/types/db";
 import ContactForm from "./ContactForm";
+import { FaWhatsapp } from "react-icons/fa6";
 
 function InstagramIcon({ className = "" }: { className?: string }) {
   return (
@@ -32,7 +32,7 @@ export default function Contact({ s }: { s: SiteSettings }) {
       label: "WhatsApp us",
       value: `+${s.whatsapp_number}`,
       href: `https://wa.me/${s.whatsapp_number}?text=${encodeURIComponent("Hello, I'd like to place an order.")}`,
-      icon: <MessageCircle className="h-6 w-6" />,
+      icon: <FaWhatsapp className="h-6 w-6" />,
       iconClass: "bg-accent text-light",
     },
     handle && {

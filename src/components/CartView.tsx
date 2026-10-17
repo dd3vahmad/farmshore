@@ -3,15 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  MessageCircle,
-  Minus,
-  Plus,
-  ShoppingBag,
-  Trash2,
-} from "lucide-react";
+import { ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useCart } from "@/store/cart";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const naira = (n: number) => `₦${Number(n).toLocaleString("en-NG")}`;
 
@@ -233,7 +227,7 @@ export default function CartView({
             href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(waText)}`}
             className="mt-3 flex items-center justify-center gap-2 rounded-full border border-light/25 px-6 py-3.5 font-semibold transition hover:bg-light/10"
           >
-            <MessageCircle className="h-5 w-5" />
+            <FaWhatsapp className="h-5 w-5" />
             Order on WhatsApp
           </a>
         )}

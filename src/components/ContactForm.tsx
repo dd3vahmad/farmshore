@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const field =
   "w-full rounded-2xl border border-dark/10 bg-[#faf6ee] px-5 py-3.5 text-base text-dark outline-none transition placeholder:text-dark/40 focus:border-accent focus:bg-white";
@@ -41,7 +41,7 @@ export default function ContactForm({ number }: { number: string }) {
         type="submit"
         className="flex w-full items-center justify-center gap-2 rounded-full bg-dark px-6 py-4 font-semibold text-light transition hover:bg-primary"
       >
-        <MessageCircle className="h-5 w-5" />
+        <FaWhatsapp className="h-5 w-5" />
         Send on WhatsApp
       </button>
       <p className="text-center text-xs text-dark/50">
