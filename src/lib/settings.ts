@@ -19,6 +19,15 @@ const FALLBACK: SiteSettings = {
   free_delivery_above: null,
   whatsapp_number: "",
   instagram_handle: null,
+  facebook_url: null,
+  tiktok_url: null,
+  youtube_url: null,
+  twitter_url: null,
+  hq_title: null,
+  hq_hours: null,
+  hq_lat: null,
+  hq_lng: null,
+  hq_address: null,
 };
 
 // cache() dedupes the query within a single request
