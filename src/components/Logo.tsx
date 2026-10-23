@@ -4,15 +4,16 @@ import Link from "next/link";
 export default function Logo({
   name = "FarmShore",
   href = "/",
+  src = "",
 }: {
   name?: string;
   href?: string | null;
+  src?: string;
 }) {
-
   return href ? (
-    <Link href="/" className="flex shrink-0 items-center gap-2">
+    <Link href={href} className="flex shrink-0 items-center gap-2">
       <Image
-        src={href}
+        src={src}
         alt={name}
         width={40}
         height={40}

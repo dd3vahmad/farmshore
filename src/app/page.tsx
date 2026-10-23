@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import type { Category, Product } from "@/types/db";
 import Contact from "@/components/Contact";
+import { GalleryItem } from "@/lib/supabase/gallery";
+import Gallery from "@/components/Gallery";
 
 export const revalidate = 60;
 
@@ -17,7 +19,7 @@ export default async function Home() {
   const supabase = await createClient();
   const s = await getSettings();
 
-  const [cats, featured, deals, latest] = await Promise.all([
+  const [cats, featured, deals, latest, gallery] = await Promise.all([
     supabase.from("categories").select("*").order("sort_order"),
     supabase
       .from("products")
@@ -36,6 +38,13 @@ export default async function Home() {
       .select("*")
       .order("created_at", { ascending: false })
       .limit(8),
+    supabase
+      .from("gallery_items")
+      .select("*")
+      .eq("is_published", true)
+      .order("sort_order")
+      .order("created_at", { ascending: false })
+      .limit(30),
   ]);
 
   return (
@@ -63,6 +72,7 @@ export default async function Home() {
           href="/products"
           products={(latest.data ?? []) as Product[]}
         />
+        <Gallery items={(gallery.data ?? []) as GalleryItem[]} />
         <TrustStrip />
       </main>
       <Contact s={s} />

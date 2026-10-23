@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Search } from "lucide-react";
 import CartButton from "./CartButton";
 import type { SiteSettings } from "@/types/db";
@@ -9,6 +8,7 @@ import Logo from "./Logo";
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Shop" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -20,22 +20,7 @@ export default function Navbar({ s }: { s: SiteSettings }) {
   return (
     <header className="sticky top-0 z-40 border-b border-light/10 bg-dark/80 text-light backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        {s.logo_url ? (
-          <Link href="/" className="flex shrink-0 items-center gap-2">
-            <Image
-              src={s.logo_url}
-              alt={s.brand_name}
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
-            />
-            <span className="text-lg font-extrabold tracking-tight">
-              {s.brand_name}
-            </span>
-          </Link>
-        ) : (
-          <Logo name={s.brand_name} />
-        )}
+        <Logo name={s.brand_name} src={s.logo_url!} />
 
         <form
           action="/products"

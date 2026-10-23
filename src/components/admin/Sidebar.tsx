@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   ExternalLink,
+  Images,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -23,6 +24,7 @@ const NAV = [
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/categories", label: "Categories", icon: Tag },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag },
+  { href: "/admin/gallery", label: "Gallery", icon: Images },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
@@ -60,7 +62,7 @@ export default function AdminSidebar({
       <span className="font-extrabold tracking-tight">{brand}</span>
     </span>
   ) : (
-    <Logo name={brand} href={logoUrl} />
+    <Logo name={brand} src={logoUrl!} />
   );
 
   return (

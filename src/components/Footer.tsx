@@ -42,7 +42,7 @@ export default function Footer({ s }: { s: SiteSettings }) {
 
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
-          <Logo name={s.brand_name} href={s.logo_url} />
+          <Logo name={s.brand_name} src={s.logo_url!} />
           {s.tagline && (
             <p className="mt-5 max-w-sm leading-relaxed text-light/60">
               {s.tagline}

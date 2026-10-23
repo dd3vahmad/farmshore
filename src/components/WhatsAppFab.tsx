@@ -1,7 +1,8 @@
 import { FaWhatsapp } from "react-icons/fa6";
 
-export default function WhatsAppFab({ number }: { number: string }) {
+function WhatsAppFab({ number }: { number: string }) {
   if (!number) return null;
+
   return (
     <a
       href={`https://wa.me/${number}`}
@@ -12,3 +13,5 @@ export default function WhatsAppFab({ number }: { number: string }) {
     </a>
   );
 }
+
+export default WhatsAppFab;

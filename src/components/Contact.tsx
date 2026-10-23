@@ -1,57 +1,78 @@
 import type { SiteSettings } from "@/types/db";
 import ContactForm from "./ContactForm";
-import { FaWhatsapp } from "react-icons/fa6";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaWhatsapp,
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
+import { getSocials, type SocialKey } from "@/lib/social";
 
-function InstagramIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
-    </svg>
-  );
-}
+// brand icon + colour for each social network
+const SOCIAL_UI: Record<
+  SocialKey,
+  { icon: React.ReactNode; iconClass: string }
+> = {
+  instagram: {
+    icon: <FaInstagram className="h-6 w-6" />,
+    iconClass:
+      "bg-linear-to-tr from-amber-400 via-pink-500 to-purple-600 text-light",
+  },
+  facebook: {
+    icon: <FaFacebookF className="h-6 w-6" />,
+    iconClass: "bg-[#1877F2] text-light",
+  },
+  twitter: {
+    icon: <FaXTwitter className="h-6 w-6" />,
+    iconClass: "bg-black text-light ring-1 ring-light/20",
+  },
+  tiktok: {
+    icon: <FaTiktok className="h-6 w-6" />,
+    iconClass: "bg-black text-light ring-1 ring-light/20",
+  },
+  youtube: {
+    icon: <FaYoutube className="h-6 w-6" />,
+    iconClass: "bg-[#FF0000] text-light",
+  },
+};
+
+type ContactCard = {
+  key: string;
+  label: string;
+  value: string;
+  href: string;
+  icon: React.ReactNode;
+  iconClass: string;
+};
 
 export default function Contact({ s }: { s: SiteSettings }) {
-  const handle = s.instagram_handle?.replace(/^@/, "");
-  const hasAny = s.whatsapp_number || handle;
-  if (!hasAny) return null;
+  const cards: ContactCard[] = [];
 
-  const cards = [
-    s.whatsapp_number && {
+  if (s.whatsapp_number) {
+    cards.push({
       key: "wa",
       label: "WhatsApp us",
       value: `+${s.whatsapp_number}`,
       href: `https://wa.me/${s.whatsapp_number}?text=${encodeURIComponent("Hello, I'd like to place an order.")}`,
       icon: <FaWhatsapp className="h-6 w-6" />,
       iconClass: "bg-accent text-light",
-    },
-    handle && {
-      key: "ig",
-      label: "Instagram",
-      value: `@${handle}`,
-      href: `https://instagram.com/${handle}`,
-      icon: <InstagramIcon className="h-6 w-6" />,
-      iconClass:
-        "bg-linear-to-tr from-amber-400 via-pink-500 to-purple-600 text-light",
-    },
-  ].filter(Boolean) as {
-    key: string;
-    label: string;
-    value: string;
-    href: string;
-    icon: React.ReactNode;
-    iconClass: string;
-  }[];
+    });
+  }
+
+  // Instagram, Facebook, X, TikTok, YouTube: only the ones filled in on the dashboard
+  for (const x of getSocials(s)) {
+    cards.push({
+      key: x.key,
+      label: x.label,
+      value: x.display,
+      href: x.href,
+      ...SOCIAL_UI[x.key],
+    });
+  }
+
+  if (cards.length === 0) return null;
 
   return (
     <section

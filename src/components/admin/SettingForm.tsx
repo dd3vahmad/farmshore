@@ -57,6 +57,10 @@ export default function SettingsForm({ s }: { s: SiteSettings }) {
       s.free_delivery_above != null ? String(s.free_delivery_above) : "",
     whatsapp_number: s.whatsapp_number ?? "",
     instagram_handle: s.instagram_handle ?? "",
+    tiktok_url: s.tiktok_url ?? "",
+    youtube_url: s.youtube_url ?? "",
+    twitter_url: s.twitter_url ?? "",
+    facebook_url: s.facebook_url ?? "",
   });
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) =>
     setF((p) => ({ ...p, [k]: v }));
@@ -124,6 +128,10 @@ export default function SettingsForm({ s }: { s: SiteSettings }) {
           free_delivery_above: free,
           whatsapp_number: f.whatsapp_number.replace(/\D/g, "") || null,
           instagram_handle: f.instagram_handle.trim().replace(/^@/, "") || null,
+          tiktok_url: f.tiktok_url.trim() || null,
+          youtube_url: f.youtube_url.trim() || null,
+          twitter_url: f.twitter_url.trim() || null,
+          facebook_url: f.facebook_url.trim() || null,
         })
         .eq("id", 1);
 
@@ -283,6 +291,38 @@ export default function SettingsForm({ s }: { s: SiteSettings }) {
               value={f.instagram_handle}
               onChange={(e) => set("instagram_handle", e.target.value)}
               placeholder="farmshore"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="TikTok URL">
+            <input
+              value={f.tiktok_url}
+              onChange={(e) => set("tiktok_url", e.target.value)}
+              placeholder="https://www.tiktok.com/@farmshore"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="YouTube URL">
+            <input
+              value={f.youtube_url}
+              onChange={(e) => set("youtube_url", e.target.value)}
+              placeholder="https://www.youtube.com/@farmshore"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Twitter URL">
+            <input
+              value={f.twitter_url}
+              onChange={(e) => set("twitter_url", e.target.value)}
+              placeholder="https://twitter.com/farmshore"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Facebook URL">
+            <input
+              value={f.facebook_url}
+              onChange={(e) => set("facebook_url", e.target.value)}
+              placeholder="https://www.facebook.com/farmshore"
               className={inputCls}
             />
           </Field>
