@@ -12,6 +12,7 @@ import type { Category, Product } from "@/types/db";
 import Contact from "@/components/Contact";
 import { GalleryItem } from "@/lib/supabase/gallery";
 import Gallery from "@/components/Gallery";
+import MapSection from "@/components/Map";
 
 export const revalidate = 60;
 
@@ -75,6 +76,7 @@ export default async function Home() {
         <Gallery items={(gallery.data ?? []) as GalleryItem[]} />
         <TrustStrip />
       </main>
+      <MapSection s={s} tone="light" />
       <Contact s={s} />
       <Footer s={s} />
       <WhatsAppFab number={s.whatsapp_number} />

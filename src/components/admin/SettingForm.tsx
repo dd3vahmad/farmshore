@@ -7,6 +7,8 @@ import { uploadImage } from "@/lib/admin-utils";
 import { btnPrimary, Card, Field, inputCls } from "./ui";
 import ImageField from "./ImageField";
 import type { SiteSettings } from "@/types/db";
+import LocationFields from "./LocationFields";
+import { parseLatLng } from "@/lib/map";
 
 const HEX = /^#[0-9a-fA-F]{3,8}$/;
 
@@ -61,6 +63,11 @@ export default function SettingsForm({ s }: { s: SiteSettings }) {
     youtube_url: s.youtube_url ?? "",
     twitter_url: s.twitter_url ?? "",
     facebook_url: s.facebook_url ?? "",
+    hq_title: s.hq_title ?? "",
+    hq_address: s.hq_address ?? "",
+    hq_hours: s.hq_hours ?? "",
+    hq_lat: s.hq_lat ?? null,
+    hq_lng: s.hq_lng ?? null,
   });
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) =>
     setF((p) => ({ ...p, [k]: v }));
@@ -132,6 +139,11 @@ export default function SettingsForm({ s }: { s: SiteSettings }) {
           youtube_url: f.youtube_url.trim() || null,
           twitter_url: f.twitter_url.trim() || null,
           facebook_url: f.facebook_url.trim() || null,
+          hq_title: f.hq_title.trim() || null,
+          hq_address: f.hq_address.trim() || null,
+          hq_hours: f.hq_hours.trim() || null,
+          hq_lat: f.hq_lat,
+          hq_lng: f.hq_lng,
         })
         .eq("id", 1);
 
@@ -272,6 +284,29 @@ export default function SettingsForm({ s }: { s: SiteSettings }) {
             />
           </Field>
         </div>
+      </Card>
+
+      <Card title="Farm Location">
+        <LocationFields
+          value={{
+            hq_title: f.hq_title,
+            hq_address: f.hq_address,
+            hq_hours: f.hq_hours,
+            hq_pin: f.hq_lat && f.hq_lng ? `${f.hq_lat}, ${f.hq_lng}` : "",
+          }}
+          onChange={(patch) => {
+            set("hq_title", patch.hq_title ?? f.hq_title);
+            set("hq_address", patch.hq_address ?? f.hq_address);
+            set("hq_hours", patch.hq_hours ?? f.hq_hours);
+            if (patch.hq_pin != null) {
+              const pin = patch.hq_pin.trim()
+                ? parseLatLng(patch.hq_pin)
+                : null;
+              set("hq_lat", pin?.lat ?? null);
+              set("hq_lng", pin?.lng ?? null);
+            }
+          }}
+        />
       </Card>
 
       <Card title="Contact">

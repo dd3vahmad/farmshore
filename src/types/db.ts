@@ -45,6 +45,9 @@ export type SiteSettings = {
   tiktok_url: string | null;
   youtube_url: string | null;
   twitter_url: string | null;
-  created_at: string;
-  updated_at: string;
+  hq_title: string | null;
+  hq_hours: string | null;
+  hq_lat: number | null;
+  hq_lng: number | null;
+  hq_address: string | null;
 };

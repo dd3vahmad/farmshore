@@ -19,7 +19,7 @@ export default function Gallery({
   return (
     <section
       id="gallery"
-      className={`scroll-mt-20 py-14 text-dark sm:py-20 ${
+      className={`scroll-mt-20 py-14 ps-4 sm:ps-0 text-dark sm:py-20 ${
         tone === "cream" ? "bg-[#f5f2e8]" : "bg-light"
       }`}
     >
